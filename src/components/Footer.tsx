@@ -16,15 +16,18 @@ export const Footer = () => {
                 </div>
 
                 <div className="flex gap-4">
-                    <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors">
+                    <a href="https://x.com/janshrutt" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors">
                         <Twitter className="w-4 h-4" />
                     </a>
-                    <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors">
+
+                    <a href="https://github.com/Janshrutt13" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors">
                         <Github className="w-4 h-4" />
                     </a>
-                    <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors">
+
+                    <a href="https://www.linkedin.com/in/janshrutt-narula-2b3a2b24a/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors">
                         <Linkedin className="w-4 h-4" />
                     </a>
+
                 </div>
             </div>
         </footer>

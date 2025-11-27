@@ -3,7 +3,8 @@ import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { Features } from "./components/Features";
 import { DemoSection } from "./components/DemoSection";
-import { Pricing } from "./components/Pricing";
+import { CommunityShowcase } from "./components/CommunityShowcase";
+
 import { Footer } from "./components/Footer";
 import { PromptEnhancer } from "./components/PromptEnhancer";
 import { SmoothScroll } from "./components/SmoothScroll";
@@ -23,7 +24,7 @@ function App() {
                     <PromptEnhancer isOpen={isEnhancerOpen} onClose={() => setIsEnhancerOpen(false)} />
                     <Features />
                     <DemoSection />
-                    <Pricing />
+                    <CommunityShowcase />
                 </main>
 
                 <Footer />
