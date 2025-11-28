@@ -73,6 +73,7 @@ export const PromptEnhancer = ({ isOpen, onClose }: PromptEnhancerProps) => {
                             </div>
                             <button
                                 onClick={onClose}
+                                aria-label="Close modal"
                                 className="p-2 rounded-full hover:bg-white/10 transition-colors text-white/40 hover:text-white"
                             >
                                 <X className="w-5 h-5" />
@@ -93,7 +94,7 @@ export const PromptEnhancer = ({ isOpen, onClose }: PromptEnhancerProps) => {
                                                 value={inputPrompt}
                                                 onChange={(e) => setInputPrompt(e.target.value)}
                                                 placeholder="Describe what you want to create..."
-                                                className="relative w-full min-h-[240px] bg-black/40 border border-white/10 rounded-xl p-5 text-white placeholder:text-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.02] transition-all resize-none text-base leading-relaxed"
+                                                className="relative w-full min-h-[240px] bg-black/40 border border-white/10 rounded-xl p-5 text-white placeholder:text-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.02] focus:ring-1 focus:ring-primary/20 transition-all resize-none text-base leading-relaxed"
                                             />
                                         </div>
                                     </div>
@@ -143,12 +144,25 @@ export const PromptEnhancer = ({ isOpen, onClose }: PromptEnhancerProps) => {
                                                 className="space-y-6 h-full flex flex-col"
                                             >
                                                 {/* Score Card */}
-                                                <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-5 flex items-center justify-between">
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ delay: 0.1 }}
+                                                    className="bg-white/[0.03] border border-white/10 rounded-2xl p-5 flex items-center justify-between"
+                                                >
                                                     <div className="flex items-center gap-4">
                                                         <div className="relative">
                                                             <svg className="w-16 h-16 -rotate-90">
                                                                 <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-white/10" />
-                                                                <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-primary" strokeDasharray={175.9} strokeDashoffset={175.9 - (175.9 * result.rating) / 10} />
+                                                                <motion.circle
+                                                                    initial={{ strokeDashoffset: 175.9 }}
+                                                                    animate={{ strokeDashoffset: 175.9 - (175.9 * result.rating) / 10 }}
+                                                                    transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                                                                    cx="32" cy="32" r="28"
+                                                                    stroke="currentColor" strokeWidth="4" fill="transparent"
+                                                                    className="text-primary"
+                                                                    strokeDasharray={175.9}
+                                                                />
                                                             </svg>
                                                             <div className="absolute inset-0 flex items-center justify-center">
                                                                 <span className="text-lg font-bold">{result.rating}</span>
@@ -162,16 +176,22 @@ export const PromptEnhancer = ({ isOpen, onClose }: PromptEnhancerProps) => {
                                                     <div className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary">
                                                         AI Analysis
                                                     </div>
-                                                </div>
+                                                </motion.div>
 
                                                 {/* Improved Prompt */}
-                                                <div className="flex-1 bg-gradient-to-b from-white/[0.05] to-transparent border border-white/10 rounded-2xl p-6 relative group">
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ delay: 0.2 }}
+                                                    className="flex-1 bg-gradient-to-b from-white/[0.05] to-transparent border border-white/10 rounded-2xl p-6 relative group"
+                                                >
                                                     <div className="flex items-center justify-between mb-4">
                                                         <h3 className="text-sm font-bold text-primary flex items-center gap-2">
                                                             <Sparkles className="w-4 h-4" /> Improved Version
                                                         </h3>
                                                         <button
                                                             onClick={copyToClipboard}
+                                                            aria-label="Copy improved prompt"
                                                             className="p-2 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-colors"
                                                             title="Copy to clipboard"
                                                         >
@@ -181,10 +201,15 @@ export const PromptEnhancer = ({ isOpen, onClose }: PromptEnhancerProps) => {
                                                     <div className="text-white/90 text-base leading-relaxed font-light">
                                                         {result.improvedPrompt}
                                                     </div>
-                                                </div>
+                                                </motion.div>
 
                                                 {/* Suggestions */}
-                                                <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5">
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ delay: 0.3 }}
+                                                    className="bg-white/[0.02] border border-white/5 rounded-2xl p-5"
+                                                >
                                                     <h3 className="text-sm font-medium text-white/60 mb-3 uppercase tracking-wider">Key Improvements</h3>
                                                     <ul className="space-y-3">
                                                         {result.suggestions.map((suggestion, index) => (
@@ -192,7 +217,7 @@ export const PromptEnhancer = ({ isOpen, onClose }: PromptEnhancerProps) => {
                                                                 key={index}
                                                                 initial={{ opacity: 0, x: -10 }}
                                                                 animate={{ opacity: 1, x: 0 }}
-                                                                transition={{ delay: index * 0.1 }}
+                                                                transition={{ delay: 0.4 + (index * 0.1) }}
                                                                 className="flex items-start gap-3 text-sm text-white/70"
                                                             >
                                                                 <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
@@ -200,7 +225,7 @@ export const PromptEnhancer = ({ isOpen, onClose }: PromptEnhancerProps) => {
                                                             </motion.li>
                                                         ))}
                                                     </ul>
-                                                </div>
+                                                </motion.div>
                                             </motion.div>
                                         ) : (
                                             <motion.div

@@ -60,9 +60,9 @@ export const Hero = ({ onOpenEnhancer }: HeroProps) => {
                             Enhance My Prompt <Wand2 className="w-4 h-4" />
                         </span>
                     </button>
-                    <button className="px-8 py-4 text-white font-medium hover:text-primary transition-colors flex items-center gap-2">
-                        View Examples <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <a href="#how-it-works" className="group px-8 py-4 text-white font-medium hover:text-primary transition-colors flex items-center gap-2">
+                        View Examples <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </a>
                 </motion.div>
             </div>
 
